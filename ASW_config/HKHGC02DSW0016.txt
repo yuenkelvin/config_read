@@ -1,0 +1,296 @@
+[HKHGC02DSW0016]display current-configuration
+#
+ version 5.20, Release 2202P06
+#
+ sysname HKHGC02DSW0016
+#
+ clock timezone HKT add 08:00:00
+#
+ super password level 3 simple 123456
+#
+ info-center source ARP channel 2
+ info-center loghost 10.32.32.20 facility local4
+ info-center loghost 10.32.32.38 facility local4
+ info-center loghost 10.48.3.8 facility local4
+#
+ irf mac-address persistent timer
+ irf auto-update enable
+ undo irf link-delay
+#
+ domain default enable asw
+#
+ telnet server enable
+#
+ link-aggregation load-sharing mode destination-mac source-mac
+#
+acl number 2000
+ rule 0 permit source 10.32.32.40 0
+ rule 5 permit source 10.48.3.8 0
+ rule 10 permit source 10.48.3.4 0
+ rule 15 permit source 10.48.3.108 0
+ rule 20 permit source 10.68.253.103 0
+ rule 25 permit source 10.68.253.102 0
+ rule 30 permit source 10.68.253.101 0
+#
+vlan 1
+#
+vlan 130
+#
+hwtacacs scheme aswtac
+ primary authentication 10.32.32.41
+ primary authorization 10.32.32.41
+ primary accounting 10.32.32.41
+ key authentication mar01asw
+ key authorization mar01asw
+ key accounting mar01asw
+ user-name-format without-domain
+#
+radius scheme system
+ server-type extended
+ primary authentication 127.0.0.1 1645
+ primary accounting 127.0.0.1 1646
+ user-name-format without-domain
+#
+domain asw
+ authentication login hwtacacs-scheme aswtac local
+ authorization login hwtacacs-scheme aswtac local
+ accounting login hwtacacs-scheme aswtac local
+ access-limit disable
+ state active
+ idle-cut disable
+ self-service-url disable
+domain system
+ access-limit disable
+ state active
+ idle-cut disable
+ self-service-url disable
+#
+user-group system
+#
+local-user admin
+ password cipher -R:[])X0DY#Q=^Q`MAF4<1!!
+ authorization-attribute level 3
+ service-type telnet
+local-user gitadmin
+ password cipher -R:[])X0DY#Q=^Q`MAF4<1!!
+ service-type telnet terminal
+#
+ stp mode rstp
+#
+interface Bridge-Aggregation1
+#
+interface Bridge-Aggregation2
+ port link-type trunk
+ undo port trunk permit vlan 1
+ port trunk permit vlan 128 to 499
+ link-aggregation mode dynamic
+#
+interface NULL0
+#
+interface Vlan-interface1
+ shutdown
+#
+interface Vlan-interface130
+ ip address 10.32.130.36 255.255.255.0
+#
+interface GigabitEthernet1/0/1
+ port access vlan 130
+#
+interface GigabitEthernet1/0/2
+ port access vlan 130
+#
+interface GigabitEthernet1/0/3
+ port access vlan 130
+#
+interface GigabitEthernet1/0/4
+ port access vlan 130
+#
+interface GigabitEthernet1/0/5
+ port access vlan 130
+#
+interface GigabitEthernet1/0/6
+ port access vlan 130
+#
+interface GigabitEthernet1/0/7
+ port access vlan 130
+#
+interface GigabitEthernet1/0/8
+ port access vlan 130
+#
+interface GigabitEthernet1/0/9
+ port access vlan 130
+#
+interface GigabitEthernet1/0/10
+ port access vlan 130
+#
+interface GigabitEthernet1/0/11
+ port access vlan 130
+#
+interface GigabitEthernet1/0/12
+ port access vlan 130
+#
+interface GigabitEthernet1/0/13
+ port access vlan 130
+#
+interface GigabitEthernet1/0/14
+ port access vlan 130
+#
+interface GigabitEthernet1/0/15
+ port access vlan 130
+#
+interface GigabitEthernet1/0/16
+ port access vlan 130
+#
+interface GigabitEthernet1/0/17
+ port access vlan 130
+#
+interface GigabitEthernet1/0/18
+ port access vlan 130
+#
+interface GigabitEthernet1/0/19
+ port access vlan 130
+#
+interface GigabitEthernet1/0/20
+ port access vlan 130
+#
+interface GigabitEthernet1/0/21
+ port access vlan 130
+#
+interface GigabitEthernet1/0/22
+ port access vlan 130
+#
+interface GigabitEthernet1/0/23
+ port access vlan 130
+ shutdown
+#
+interface GigabitEthernet1/0/24
+ port access vlan 130
+#
+interface GigabitEthernet1/0/25
+ shutdown
+#
+interface GigabitEthernet1/0/26
+ shutdown
+#
+interface GigabitEthernet1/0/27
+ shutdown
+#
+interface GigabitEthernet1/0/28
+ port link-type trunk
+ undo port trunk permit vlan 1
+ port trunk permit vlan 128 to 499
+ stp disable
+ port link-aggregation group 2
+#
+interface GigabitEthernet2/0/1
+ port access vlan 130
+#
+interface GigabitEthernet2/0/2
+ port access vlan 130
+#
+interface GigabitEthernet2/0/3
+ port access vlan 130
+#
+interface GigabitEthernet2/0/4
+ port access vlan 130
+#
+interface GigabitEthernet2/0/5
+ port access vlan 130
+#
+interface GigabitEthernet2/0/6
+ port access vlan 130
+#
+interface GigabitEthernet2/0/7
+ port access vlan 130
+#
+interface GigabitEthernet2/0/8
+ port access vlan 130
+#
+interface GigabitEthernet2/0/9
+ port access vlan 130
+#
+interface GigabitEthernet2/0/10
+ port access vlan 130
+#
+interface GigabitEthernet2/0/11
+ port access vlan 130
+#
+interface GigabitEthernet2/0/12
+ port access vlan 130
+#
+interface GigabitEthernet2/0/13
+ port access vlan 130
+#
+interface GigabitEthernet2/0/14
+ port access vlan 130
+#
+interface GigabitEthernet2/0/15
+ port access vlan 130
+#
+interface GigabitEthernet2/0/16
+ port access vlan 130
+#
+interface GigabitEthernet2/0/17
+ port access vlan 130
+#
+interface GigabitEthernet2/0/18
+ port access vlan 130
+#
+interface GigabitEthernet2/0/19
+ port access vlan 130
+#
+interface GigabitEthernet2/0/20
+ port access vlan 130
+#
+interface GigabitEthernet2/0/21
+ port access vlan 130
+#
+interface GigabitEthernet2/0/22
+ port access vlan 130
+#
+interface GigabitEthernet2/0/23
+ port access vlan 130
+ shutdown
+#
+interface GigabitEthernet2/0/24
+ port access vlan 130
+#
+interface GigabitEthernet2/0/25
+ shutdown
+#
+interface GigabitEthernet2/0/26
+ shutdown
+#
+interface GigabitEthernet2/0/27
+ shutdown
+#
+interface GigabitEthernet2/0/28
+ port link-type trunk
+ undo port trunk permit vlan 1
+ port trunk permit vlan 128 to 499
+ stp disable
+ port link-aggregation group 2
+#
+ ip route-static 0.0.0.0 0.0.0.0 10.32.130.10
+#
+ snmp-agent
+ snmp-agent local-engineid 800063A2033CE5A679CEB7
+ snmp-agent community read aswg1sd
+ snmp-agent community read asw01mac acl 2000
+ snmp-agent sys-info version v2c v3
+#
+ header shell %
+WARNING: Unauthorized access to this network is prohibited
+%
+#
+ ntp-service unicast-server 10.32.18.1 priority
+#
+user-interface aux 0 3
+user-interface vty 0
+ authentication-mode scheme
+ protocol inbound telnet
+user-interface vty 1 4
+ authentication-mode scheme
+#
+return
+[HKHGC02DSW0016]

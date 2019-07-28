@@ -1,0 +1,465 @@
+HKHGC02DSW0013#sh run
+Building configuration...
+
+Current configuration : 10806 bytes
+!
+version 12.2
+no service pad
+service tcp-keepalives-in
+service tcp-keepalives-out
+service timestamps debug datetime localtime show-timezone
+service timestamps log datetime msec localtime show-timezone
+service password-encryption
+service linenumber
+!
+hostname HKHGC02DSW0013
+!
+boot-start-marker
+boot-end-marker
+!
+logging buffered 300000
+logging console critical
+enable secret 5 $1$M05M$chO4dTbtTICbg.SVlEAHv0
+!
+username mtlops secret 5 $1$U9R.$vQFAl4NRdiJBvVHR6E19w1
+username mtltech secret 5 $1$SIO1$crp/yiSjOxBXnnG90.QiG0
+username gitadmin password 7 141613075C037B25
+aaa new-model
+!
+!
+aaa authentication login default local group tacacs+
+aaa authorization exec default local group tacacs+
+aaa accounting commands 15 default stop-only group tacacs+
+!
+!
+!
+aaa session-id common
+clock timezone HKT 8
+system mtu routing 1500
+ip subnet-zero
+no ip source-route
+!
+!
+no ip domain-lookup
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode rapid-pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+!
+!
+interface Port-channel1
+ description Connected to HKHGC02DSW0001
+ switchport mode trunk
+ switchport nonegotiate
+ load-interval 30
+!
+interface Port-channel2
+ description Connected to HKHGC02DSW0015
+ switchport trunk allowed vlan 130,190
+ switchport mode trunk
+ switchport nonegotiate
+ load-interval 30
+!
+interface GigabitEthernet0/1
+ description hk02phkbodb01 LAN 1; was hkhgc02infvmw01 eth1 (V181)
+ switchport access vlan 202
+ switchport mode access
+ load-interval 30
+ spanning-tree portfast
+!
+interface GigabitEthernet0/2
+ switchport access vlan 181
+ switchport mode access
+ load-interval 30
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet0/3
+ switchport access vlan 181
+ switchport mode access
+ load-interval 30
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet0/4
+ switchport access vlan 181
+ switchport mode access
+ load-interval 30
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet0/5
+ description Infinity hkhgc02vmw0004 eth1
+ switchport access vlan 190
+ switchport mode access
+ load-interval 30
+ spanning-tree portfast
+!
+interface GigabitEthernet0/6
+ description Infinity hkhgc02infdb01 eth1
+ switchport access vlan 183
+ switchport mode access
+ load-interval 30
+ spanning-tree portfast
+!
+interface GigabitEthernet0/7
+ description Infinity hkhgc02infdb02 eth1
+ switchport access vlan 183
+ switchport mode access
+ load-interval 30
+ spanning-tree portfast
+!
+interface GigabitEthernet0/8
+ switchport mode access
+ load-interval 30
+ spanning-tree portfast
+!
+interface GigabitEthernet0/9
+ switchport mode access
+ load-interval 30
+ spanning-tree portfast
+!
+interface GigabitEthernet0/10
+ description Intelq hkhgc02intelq01 net1
+ switchport access vlan 205
+ switchport mode access
+ load-interval 30
+ spanning-tree portfast
+!
+interface GigabitEthernet0/11
+ switchport access vlan 205
+ switchport mode access
+ load-interval 30
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet0/12
+ description Intelq hkhgc02intelq03 net1
+ switchport access vlan 205
+ switchport mode access
+ load-interval 30
+ spanning-tree portfast
+!
+interface GigabitEthernet0/13
+ description Intelq hkhgc02intelq04 net1
+ switchport access vlan 205
+ switchport mode access
+ load-interval 30
+ spanning-tree portfast
+!
+interface GigabitEthernet0/14
+ description PNS CN Retek hkhgc02pcnbo04 eth1
+ switchport access vlan 210
+ switchport mode access
+ load-interval 30
+ spanning-tree portfast
+!
+interface GigabitEthernet0/15
+ description VNX 7500 SP
+ switchport access vlan 181
+ switchport mode access
+ load-interval 30
+ spanning-tree portfast
+!
+interface GigabitEthernet0/16
+ description PNS HK RMS DEV gemini ent0
+ switchport access vlan 131
+ switchport mode access
+ load-interval 30
+ spanning-tree portfast
+!
+interface GigabitEthernet0/17
+ description PNS HK RMS DEV aquarius ent0
+ switchport access vlan 131
+ switchport mode access
+ load-interval 30
+ spanning-tree portfast
+!
+interface GigabitEthernet0/18
+ description hkhgc02hrdms01 en2
+ switchport access vlan 182
+ switchport mode access
+ load-interval 30
+ spanning-tree portfast
+!
+interface GigabitEthernet0/19
+ description hkhgc02hrdms02 en2
+ switchport access vlan 182
+ switchport mode access
+ load-interval 30
+ spanning-tree portfast
+!
+interface GigabitEthernet0/20
+ switchport access vlan 190
+ switchport mode access
+ load-interval 30
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet0/21
+ switchport trunk allowed vlan 128,130-132,140,141,144,150-157,161-163,171,172
+ switchport trunk allowed vlan add 181-184,186,190,198-205,207-213,215,465,466
+ switchport mode trunk
+ load-interval 30
+ shutdown
+ spanning-tree portfast
+ spanning-tree guard root
+!
+interface GigabitEthernet0/22
+ description hkhgc02WWRF001 LAN1 - WW Warehouse RF PO
+ switchport access vlan 131
+ switchport mode access
+ load-interval 30
+ spanning-tree portfast
+!
+interface GigabitEthernet0/23
+ description BO DB hkhgc02ibpbdb1 eth1
+ switchport access vlan 203
+ switchport mode access
+ load-interval 30
+ spanning-tree portfast
+!
+interface GigabitEthernet0/24
+ description PNSCN Retek hkhgc02pcndb01 eth0
+ switchport access vlan 132
+ switchport mode access
+ load-interval 30
+ spanning-tree portfast
+!
+interface GigabitEthernet0/25
+ description hkhgc02vmw0007vm nic0
+ switchport access vlan 181
+ switchport mode access
+ load-interval 30
+ spanning-tree portfast
+!
+interface GigabitEthernet0/26
+ description hkhgc02vmw0007vm nic2 - VMWare
+ switchport trunk allowed vlan 128,130-132,140,141,144,150-157,161-163,171,172
+ switchport trunk allowed vlan add 181-184,186,190,198-205,207-213,215,465,466
+ switchport mode trunk
+ load-interval 30
+ spanning-tree portfast
+!
+interface GigabitEthernet0/27
+ description VNX7500_m1
+ switchport access vlan 189
+ switchport mode access
+ load-interval 30
+ spanning-tree portfast
+!
+interface GigabitEthernet0/28
+ switchport mode access
+ load-interval 30
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet0/29
+ switchport access vlan 181
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/30
+ switchport access vlan 181
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/31
+ switchport mode access
+ load-interval 30
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet0/32
+ switchport mode access
+ load-interval 30
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet0/33
+ switchport mode access
+ load-interval 30
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet0/34
+ switchport mode access
+ load-interval 30
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet0/35
+ switchport mode access
+ load-interval 30
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet0/36
+ switchport mode access
+ load-interval 30
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet0/37
+ switchport mode access
+ load-interval 30
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet0/38
+ switchport mode access
+ load-interval 30
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet0/39
+ switchport mode access
+ load-interval 30
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet0/40
+ switchport mode access
+ load-interval 30
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet0/41
+ switchport mode access
+ load-interval 30
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet0/42
+ switchport mode access
+ load-interval 30
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet0/43
+ switchport mode access
+ load-interval 30
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet0/44
+ switchport mode access
+ load-interval 30
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet0/45
+ description Connected to HKHGC02DSW0015 Gi0/1
+ switchport trunk allowed vlan 130,190
+ switchport mode trunk
+ switchport nonegotiate
+ load-interval 30
+ channel-group 2 mode on
+!
+interface GigabitEthernet0/46
+ description Connected to HKHGC02DSW0015 Gi0/2
+ switchport trunk allowed vlan 130,190
+ switchport mode trunk
+ switchport nonegotiate
+ load-interval 30
+ channel-group 2 mode on
+!
+interface GigabitEthernet0/47
+ description Connected to HKHGC02DSW0001 Gi4/0/3
+ switchport mode trunk
+ switchport nonegotiate
+ load-interval 30
+ channel-group 1 mode on
+!
+interface GigabitEthernet0/48
+ description Connected to HKHGC02DSW0001 Gi5/0/3
+ switchport mode trunk
+ switchport nonegotiate
+ load-interval 30
+ channel-group 1 mode on
+!
+interface Vlan1
+ no ip address
+ no ip route-cache
+ shutdown
+!
+interface Vlan130
+ ip address 10.32.130.33 255.255.255.0
+ no ip route-cache
+!
+ip default-gateway 10.32.130.10
+no ip http server
+no ip http secure-server
+logging 10.48.3.8
+logging 10.68.253.101
+access-list 79 permit 10.32.32.40
+access-list 79 permit 10.32.32.38
+access-list 79 permit 10.48.3.8
+access-list 79 permit 10.48.3.4
+access-list 79 permit 10.48.3.108
+access-list 79 permit 10.32.83.20
+access-list 79 permit 10.68.253.103
+access-list 79 permit 10.68.253.102
+access-list 79 permit 10.68.253.101
+access-list 79 deny   any log
+snmp-server community aswg1sd RO
+snmp-server community asw01mac RO 79
+snmp-server enable traps snmp authentication linkdown linkup coldstart warmstart
+snmp-server enable traps transceiver all
+snmp-server enable traps tty
+snmp-server enable traps cluster
+snmp-server enable traps entity
+snmp-server enable traps cpu threshold
+snmp-server enable traps rep
+snmp-server enable traps vtp
+snmp-server enable traps vlancreate
+snmp-server enable traps vlandelete
+snmp-server enable traps flash insertion removal
+snmp-server enable traps port-security
+snmp-server enable traps auth-framework sec-violation
+snmp-server enable traps dot1x auth-fail-vlan guest-vlan no-auth-fail-vlan no-guest-vlan
+snmp-server enable traps envmon fan shutdown supply temperature status
+snmp-server enable traps power-ethernet group 1
+snmp-server enable traps power-ethernet police
+snmp-server enable traps config-copy
+snmp-server enable traps config
+snmp-server enable traps config-ctid
+snmp-server enable traps energywise
+snmp-server enable traps rtr
+snmp-server enable traps bridge newroot topologychange
+snmp-server enable traps stpx inconsistency root-inconsistency loop-inconsistency
+snmp-server enable traps syslog
+snmp-server enable traps mac-notification change move threshold
+snmp-server enable traps vlan-membership
+snmp-server enable traps errdisable
+tacacs-server host 10.32.32.41
+tacacs-server host 10.32.83.23
+tacacs-server host 10.33.2.87
+tacacs-server directed-request
+tacacs-server key 7 04560A145F704D5D1E
+!
+control-plane
+!
+banner exec ^C WARNING: Unauthorized access to this network is prohibited ^C
+banner login ^C WARNING: Unauthorized access to this network is prohibited ^C
+banner motd ^C WARNING: Unauthorized access to this network is prohibited ^C
+!
+line con 0
+line vty 5 15
+!
+ntp clock-period 36029561
+ntp server 10.32.128.1
+ntp server 10.32.130.10
+end
+
+HKHGC02DSW0013#

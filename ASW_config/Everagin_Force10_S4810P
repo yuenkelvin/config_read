@@ -1,0 +1,1175 @@
+! Version 9.3(0.0)
+! Last configuration change at Wed Jun 26 12:42:45 2019 by default
+! Startup-config last updated at Wed Jun 26 12:54:33 2019 by default
+!
+boot system stack-unit 0 primary system: A:
+boot system stack-unit 0 secondary system: B:
+boot system stack-unit 0 default system: A:
+boot system stack-unit 1 primary system: A:
+boot system stack-unit 1 secondary system: B:
+boot system stack-unit 1 default system: A:
+!
+redundancy auto-synchronize full
+! 
+hardware watchdog
+!
+logging buffered 300000 debugging
+logging console critical
+service timestamps log datetime localtime msec show-timezone
+service timestamps debug datetime localtime show-timezone
+!
+hostname Everagin_Force10_S4810P
+!
+aaa authentication login default tacacs+ local
+aaa authorization exec default tacacs+ local
+aaa authorization commands 15 default tacacs+ local
+aaa accounting commands 15 default stop-only tacacs+
+!
+username gitadmin password 7 2cbbd16e99ddd8fe privilege 15 
+username asw password 7 6ae805bc65fc8d32 privilege 15
+username kudos password 7 1c491095755ed8fd privilege 15
+! 
+protocol spanning-tree pvst 
+ no disable 
+ vlan 2-999 bridge-priority 49152  
+! 
+stack-unit 0 provision S4810
+! 
+stack-unit 0 stack-group 14
+! 
+stack-unit 0 stack-group 15
+! 
+interface TenGigabitEthernet 0/0
+ description Port-channel 31 Connect to 3750G Port 4/0/8
+ no ip address
+ flowcontrol rx on tx off  
+ no shutdown
+! 
+interface TenGigabitEthernet 0/1
+ description Port-channel 31 Connect to 3750G Port 4/0/9
+ no ip address
+ flowcontrol rx on tx off  
+ no shutdown
+! 
+interface TenGigabitEthernet 0/2
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/3
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/4
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/5
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/6
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/7
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/8
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/9
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/10
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/11
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/12
+ description EMC VMAX3 (new storage 2016) - fiber lable N03-N06 OM3 003 2E25 IP .28
+ no ip address
+ switchport
+ no shutdown
+! 
+interface TenGigabitEthernet 0/13
+ description EMC VMAX3 (new storage 2016) - fiber lable N03-N06 OM3 004 1E25 IP .26
+ no ip address
+ switchport
+ no shutdown
+! 
+interface TenGigabitEthernet 0/14
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/15
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/16
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/17
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 0/18
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/19
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/20
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/21
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/22
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/23
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/24
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/25
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/26
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/27
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/28
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/29
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/30
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/31
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/32
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/33
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/34
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/35
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/36
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/37
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/38
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/39
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/40
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/41
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/42
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/43
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/44
+ no ip address
+ shutdown
+! 
+interface TenGigabitEthernet 0/45
+ description Connect to S4820T Port 0/52
+ no ip address
+ flowcontrol rx on tx off  
+!  
+ port-channel-protocol LACP 
+  port-channel 42 mode active 
+ no shutdown
+! 
+interface TenGigabitEthernet 0/46
+ description Connect to S4820T Port 0/53
+ no ip address
+ flowcontrol rx on tx off  
+!  
+ port-channel-protocol LACP 
+  port-channel 42 mode active 
+ no shutdown
+! 
+interface TenGigabitEthernet 0/47
+ description HGC 10G link to C4500x-1 Te1/25 (cc# ML0000089)
+ no ip address
+ switchport
+ flowcontrol rx on tx on  
+ rate-interval 5
+ sflow enable
+ no shutdown
+! 
+interface fortyGigE 0/48
+ no ip address
+ shutdown
+! 
+interface fortyGigE 0/52
+ no ip address
+ shutdown
+! 
+stack-unit 1 provision S4810
+! 
+stack-unit 1 stack-group 14
+! 
+stack-unit 1 stack-group 15
+! 
+interface TenGigabitEthernet 1/0
+ description Port-channel 31 Connect to 3750G Port 5/0/8
+ no ip address
+ flowcontrol rx on tx off  
+ no shutdown
+! 
+interface TenGigabitEthernet 1/1
+ description Port-channel 31 Connect to 3750G Port 5/0/9
+ no ip address
+ flowcontrol rx on tx off  
+ no shutdown
+! 
+interface TenGigabitEthernet 1/2
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/3
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/4
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/5
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/6
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/7
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/8
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/9
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/10
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/11
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/12
+ description EMC VMAX3 (new storage 2016) - fiber lable N03-N06 OM3 002 1E24 IP .25
+ no ip address
+ switchport
+ flowcontrol rx on tx off  
+ no shutdown
+! 
+interface TenGigabitEthernet 1/13
+ description EMC VMAX3 (new storage 2016) - fiber lable N03-N06 OM3 001 2E24 IP .27
+ no ip address
+ switchport
+ flowcontrol rx on tx off  
+ no shutdown
+! 
+interface TenGigabitEthernet 1/14
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/15
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/16
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/17
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/18
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/19
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/20
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/21
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/22
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/23
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/24
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/25
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/26
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/27
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/28
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/29
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/30
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/31
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/32
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/33
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/34
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/35
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/36
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/37
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/38
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/39
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/40
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/41
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/42
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/43
+ no ip address
+ flowcontrol rx on tx off  
+ shutdown
+! 
+interface TenGigabitEthernet 1/44
+ description 10G link to N9K DC2
+ no ip address
+ switchport
+ flowcontrol rx on tx off  
+ rate-interval 5
+ sflow enable
+ no shutdown
+! 
+interface TenGigabitEthernet 1/45
+ description Connect to S4820T Port 1/52
+ no ip address
+ flowcontrol rx on tx off  
+!  
+ port-channel-protocol LACP 
+  port-channel 42 mode active 
+ no shutdown
+! 
+interface TenGigabitEthernet 1/46
+ description Connect to S4820T Port 1/53
+ no ip address
+ flowcontrol rx on tx off  
+!  
+ port-channel-protocol LACP 
+  port-channel 42 mode active 
+ no shutdown
+! 
+interface TenGigabitEthernet 1/47
+ description HGC 10G link to C4500x-2 Te1/25 (cc# ML0000091)
+ no ip address
+ switchport
+ flowcontrol rx on tx on  
+ rate-interval 5
+ sflow enable
+ no shutdown
+! 
+interface fortyGigE 1/48
+ no ip address
+ flowcontrol rx on tx off  
+ no shutdown
+! 
+interface fortyGigE 1/52
+ no ip address
+ flowcontrol rx on tx off  
+ no shutdown
+! 
+interface ManagementEthernet 0/0
+ ip address 192.168.10.1/24
+ no shutdown
+! 
+interface ManagementEthernet 1/0
+ ip address 192.168.10.2/24
+ no shutdown
+! 
+interface ManagementEthernet 2/0
+ no shutdown
+! 
+interface ManagementEthernet 3/0
+ no shutdown
+! 
+interface ManagementEthernet 4/0
+ no shutdown
+! 
+interface ManagementEthernet 5/0
+ no shutdown
+! 
+interface ManagementEthernet 6/0
+ no shutdown
+! 
+interface ManagementEthernet 7/0
+ no shutdown
+! 
+interface ManagementEthernet 8/0
+ no shutdown
+! 
+interface ManagementEthernet 9/0
+ no shutdown
+! 
+interface ManagementEthernet 10/0
+ no shutdown
+! 
+interface ManagementEthernet 11/0
+ no shutdown
+! 
+interface Port-channel 31
+ description Connect to 3750G Port 4/0/8 , 4/0/9 5/0/8 , 5/0/9
+ no ip address
+ switchport
+ channel-member TenGigabitEthernet 0/0-1
+ channel-member TenGigabitEthernet 1/0-1
+ rate-interval 5
+ sflow enable
+ no shutdown
+! 
+interface Port-channel 42
+ description Connect to S4820T Port 0/52 , 0/53 1/52 , 1/53
+ no ip address
+ switchport
+ no shutdown
+! 
+interface Vlan 1
+! 
+interface Vlan 2
+ no ip address
+ tagged TenGigabitEthernet 0/47
+ tagged TenGigabitEthernet 1/47
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 11
+ no ip address
+ tagged TenGigabitEthernet 0/47
+ tagged TenGigabitEthernet 1/47
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 12
+ no ip address
+ tagged TenGigabitEthernet 0/47
+ tagged TenGigabitEthernet 1/47
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 63
+ no ip address
+ tagged TenGigabitEthernet 0/47
+ tagged TenGigabitEthernet 1/47
+ no shutdown
+! 
+interface Vlan 128
+ description CORE_NETWORK
+ ip address 10.32.128.1/24
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31,42
+ ip unreachables
+ no shutdown
+! 
+interface Vlan 130
+ description LOCAL_MGMT
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31,42
+ no shutdown
+! 
+interface Vlan 131
+ description PNS_HK
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 132
+ description PNS_CN
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 140
+ description CP_DMZ1
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 141
+ description FTR_HK
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 144
+ description AD_TestBed
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 145
+ description AD_TestBed_2
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 150
+ description CP_DMZ2
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 151
+ description WTC_HK
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 152
+ description WTC_CN
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 153
+ description WTC_TH
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 154
+ description WTC_MY
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 155
+ description WTC_PH
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 156
+ description WTC_SG
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 157
+ description WTC_TW
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 159
+ description WTC_ID
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 161
+ description WTC_HK
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 162
+ description IB_HK
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 163
+ description ASWI
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 171
+ description HnB_MN
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 172
+ description NWL
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 180
+ description VLAN0180
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 181
+ description GIT
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 182
+ description GHR
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 183
+ description GRP_INNFINITY
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 184
+ description GLobal_CRM
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 185
+ description temp185
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 186
+ description Asia SPACE Project
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 189
+ description VLAN0189
+ ip address 10.32.189.1/27
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ untagged TenGigabitEthernet 0/12-13
+ untagged TenGigabitEthernet 1/12-13
+ ip unreachables
+ no shutdown
+! 
+interface Vlan 190
+ description MANAGEMENT_LAN_BU
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 191
+ description WAN_CONNECTIONS
+ ip address 10.32.191.1/29
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31,42
+ ip unreachables
+ no shutdown
+! 
+interface Vlan 192
+ description MANAGEMENT_LAN_2
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 198
+ description Backup_Net
+ ip address 10.32.198.1/24
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31,42
+ ip unreachables
+ no shutdown
+! 
+interface Vlan 199
+ description HP_Print_Monitoring
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 200
+ description TEMP
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 201
+ description PROD_WTCCN
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 202
+ description PROD_PNSHK
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 203
+ description PROD_IBHK
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 204
+ description PROD_WTCHK
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 205
+ description PROD_GrpSecurity
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 206
+ description PROD_GrpFinance
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 207
+ description PROD_WTCTH
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 208
+ description PROD_WTCSG
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 209
+ description PROD_WTCMY
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 210
+ description PROD_PNSCN
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 211
+ description PROD_WTCTW
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 212
+ description PROD_GrpHR
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 213
+ description Infinity_DR_VLAN
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 215
+ description Group SPACE DR
+ no ip address
+ tagged TenGigabitEthernet 1/44
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 241
+ ip address 10.32.241.1/24
+ tagged Port-channel 42
+ ip access-group acl_112 in
+ ip unreachables
+ no shutdown
+! 
+interface Vlan 242
+ ip address 10.32.242.1/24
+ tagged Port-channel 42
+ ip unreachables
+ no shutdown
+! 
+interface Vlan 254
+ no ip address
+ tagged TenGigabitEthernet 0/47
+ tagged TenGigabitEthernet 1/47
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 255
+ description VLAN0255
+ no ip address
+ tagged TenGigabitEthernet 0/47
+ tagged TenGigabitEthernet 1/44,47
+ tagged Port-channel 31
+ no shutdown
+! 
+interface Vlan 491
+ ip address 10.32.13.18/30
+ tagged TenGigabitEthernet 0/47
+ ip unreachables
+ no shutdown
+! 
+interface Vlan 492
+ ip address 10.32.13.22/30
+ tagged TenGigabitEthernet 1/47
+ ip unreachables
+ no shutdown
+!
+route-map static2ospf permit 10
+ match ip address prefix_10
+!
+ip prefix-list prefix_10
+ seq 5 permit 10.32.128.0/18 le 32
+ seq 10 permit 10.32.192.0/19 le 32
+ seq 15 permit 10.32.103.8/29
+ seq 20 permit 10.63.11.16/28
+!
+router ospf 1
+ router-id 10.32.128.1
+ log-adjacency-changes
+ network 10.32.13.20/30 area 0
+ network 10.32.128.0/24 area 0
+ network 10.32.191.0/29 area 0
+ network 10.32.241.0/24 area 0
+ network 10.32.242.0/24 area 0
+ network 10.32.13.16/30 area 0
+ network 10.32.198.0/24 area 0
+ passive-interface default
+ no passive-interface Vlan 128
+ no passive-interface Vlan 491
+ no passive-interface Vlan 492
+ redistribute static metric-type 1 route-map static2ospf 
+!
+ip access-list extended acl_111
+ seq 5 permit ip 10.32.189.0/27 10.32.89.0/27
+ seq 10 permit ip 10.32.189.0/27 10.32.189.0/27
+ seq 15 permit ip 10.32.189.0/27 10.32.89.64/27
+ seq 20 permit ip 10.32.189.0/27 10.32.89.32/27
+!
+ip access-list extended acl_112
+ seq 5 permit ip 10.32.241.0/24 10.32.43.0/24
+ seq 10 permit ip 10.32.241.0/24 10.32.241.0/24
+ seq 15 permit ip 10.32.43.0/24 10.32.241.0/24
+!
+ip route 0.0.0.0/0 10.32.13.17 
+ip route 0.0.0.0/0 10.32.13.21 
+ip route 0.0.0.0/0 10.32.128.20 120 
+ip route 10.32.103.8/29 10.32.128.50 
+ip route 10.32.128.0/18 NULL 0 
+ip route 10.32.130.0/24 10.32.128.20 
+ip route 10.32.131.0/24 10.32.128.10 
+ip route 10.32.132.0/24 10.32.128.10 
+ip route 10.32.140.0/24 10.32.128.20 
+ip route 10.32.141.0/24 10.32.128.10 
+ip route 10.32.144.0/24 10.32.128.10 
+ip route 10.32.145.0/24 10.32.128.10 
+ip route 10.32.150.0/24 10.32.128.20 
+ip route 10.32.151.0/24 10.32.128.10 
+ip route 10.32.152.0/24 10.32.128.10 
+ip route 10.32.153.0/24 10.32.128.10 
+ip route 10.32.154.0/24 10.32.128.10 
+ip route 10.32.155.0/24 10.32.128.10 
+ip route 10.32.156.0/24 10.32.128.10 
+ip route 10.32.157.0/24 10.32.128.10 
+ip route 10.32.159.0/24 10.32.128.10 
+ip route 10.32.161.0/24 10.32.128.10 
+ip route 10.32.162.0/24 10.32.128.10 
+ip route 10.32.163.0/24 10.32.128.10 
+ip route 10.32.171.0/24 10.32.128.10 
+ip route 10.32.172.0/24 10.32.128.10 
+ip route 10.32.179.0/24 10.32.128.20 
+ip route 10.32.181.0/24 10.32.128.10 
+ip route 10.32.182.0/24 10.32.128.10 
+ip route 10.32.183.0/24 10.32.128.10 
+ip route 10.32.184.0/24 10.32.128.10 
+ip route 10.32.186.0/24 10.32.128.10 
+ip route 10.32.190.0/24 10.32.128.10 
+ip route 10.32.192.0/24 10.32.128.10 
+ip route 10.32.199.0/24 10.32.128.10 
+ip route 10.32.200.0/24 10.32.128.10 
+ip route 10.32.201.0/24 10.32.128.10 
+ip route 10.32.202.0/24 10.32.128.10 
+ip route 10.32.203.0/24 10.32.128.10 
+ip route 10.32.204.0/24 10.32.128.10 
+ip route 10.32.205.0/24 10.32.128.10 
+ip route 10.32.206.0/24 10.32.128.10 
+ip route 10.32.207.0/24 10.32.128.10 
+ip route 10.32.208.0/24 10.32.128.10 
+ip route 10.32.209.0/24 10.32.128.10 
+ip route 10.32.210.0/24 10.32.128.10 
+ip route 10.32.211.0/24 10.32.128.10 
+ip route 10.32.212.0/24 10.32.128.10 
+ip route 10.32.213.0/24 10.32.128.10 
+ip route 10.32.215.0/24 10.32.128.10 
+ip route 10.63.11.16/28 10.32.128.50 
+ip route 58.62.0.0/24 10.32.128.20 
+ip route 213.164.25.0/24 10.32.128.20 
+!
+logging facility local6
+logging 10.32.32.20
+!
+banner exec ^C
+ WARNING: Unauthorized access to this network is prohibited 
+^C
+banner login ^C
+ WARNING: Unauthorized access to this network is prohibited 
+^C
+banner motd ^C
+ WARNING: Unauthorized access to this network is prohibited 
+^C
+!
+snmp-server community asw01mac ro 79
+snmp-server community aswg1sd ro 
+snmp-server community cnsnms_ro ro 
+snmp-server host 10.48.3.3 traps version 1 smartnet udp-port 162
+!
+stack-unit 0 priority 14
+stack-unit 1 priority 13
+no ip telnet server enable
+!
+ntp server 10.32.15.1
+ntp server 10.32.128.1
+ntp server 10.63.44.5
+ntp source Vlan 128
+!
+tacacs-server key 7 ec1365927322d5b2 
+ip tacacs source-interface Vlan 128 
+tacacs-server host 10.32.32.41
+tacacs-server host 10.32.83.23
+!
+clock timezone HKT 8 0 
+!
+ip ssh server enable
+! 
+protocol lldp 
+!
+line console 0
+ exec-timeout 0 0
+line vty 0
+ privilege level 15
+line vty 1
+ privilege level 15
+line vty 2
+ privilege level 15
+line vty 3
+ privilege level 15
+line vty 4
+ privilege level 15
+line vty 5
+line vty 6
+line vty 7
+line vty 8
+line vty 9
+!
+sflow collector 10.32.128.100 agent-addr 10.32.128.1 9996
+sflow enable
+sflow polling-interval 15
+! 
+reload-type normal-reload
+! 
+end

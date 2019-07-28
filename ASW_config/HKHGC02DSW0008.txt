@@ -1,0 +1,434 @@
+HKHGC02DSW0008#sh run
+Building configuration...
+
+Current configuration : 10665 bytes
+!
+version 12.2
+no service pad
+service timestamps debug datetime localtime show-timezone
+service timestamps log datetime msec localtime show-timezone
+service password-encryption
+service linenumber
+service sequence-numbers
+!
+hostname HKHGC02DSW0008
+!
+boot-start-marker
+boot-end-marker
+!
+logging buffered 300000
+logging console critical
+enable secret 5 $1$D1sl$6i2/UszUmlhpzwj1Np2AL/
+!
+username admin password 7 094D4F054902461C
+username mtlops privilege 15 password 7 0504080328424B
+aaa new-model
+!
+!
+aaa authentication login default local group tacacs+
+aaa authorization exec default group tacacs+ none
+aaa authorization commands 15 default group tacacs+ none
+!
+!
+!
+aaa session-id common
+clock timezone HKT 8
+system mtu routing 1500
+ip subnet-zero
+no ip source-route
+!
+no ip domain-lookup
+!
+!
+crypto pki trustpoint TP-self-signed-2144064640
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-2144064640
+ revocation-check none
+ rsakeypair TP-self-signed-2144064640
+!
+crypto pki trustpoint HTTPS_SS_CERT_KEYPAIR
+ enrollment selfsigned
+ serial-number
+ revocation-check none
+ rsakeypair HTTPS_SS_CERT_KEYPAIR
+!
+!
+crypto pki certificate chain TP-self-signed-2144064640
+crypto pki certificate chain HTTPS_SS_CERT_KEYPAIR
+ certificate self-signed 01
+  3082027B 308201E4 A0030201 02020101 300D0609 2A864886 F70D0101 04050030
+  4B311830 16060355 0403130F 484B4847 43303244 53573030 30382E31 2F300F06
+  03550405 13084541 42373541 3830301C 06092A86 4886F70D 01090216 0F484B48
+  47433032 44535730 3030382E 301E170D 39333036 31343233 35363130 5A170D32
+  30303130 31303030 3030305A 304B3118 30160603 55040313 0F484B48 47433032
+  44535730 3030382E 312F300F 06035504 05130845 41423735 41383030 1C06092A
+  864886F7 0D010902 160F484B 48474330 32445357 30303038 2E30819F 300D0609
+  2A864886 F70D0101 01050003 818D0030 81890281 8100BBE5 165D28CF 171E5601
+  832864DC 31AF5E45 2633C554 94331787 2D3D24FD CCFA8B7F 9B75E513 5893614C
+  21725A02 2CBE19B6 B4E6A56F 8B88BB81 657AEC86 5EFBB0DF F54A7826 9CD23CDC
+  1E251F28 91CC1A31 0834ED2F 936B7CC1 7C7F3582 D82148E3 1DE0A4EA 81868D7D
+  FE10124C 599A9E0A 3014B0DC 7A8EA312 93839B79 4AD90203 010001A3 6F306D30
+  0F060355 1D130101 FF040530 030101FF 301A0603 551D1104 13301182 0F484B48
+  47433032 44535730 3030382E 301F0603 551D2304 18301680 1434FC4F 72531DF4
+  006E123F FB2532D7 6EC47B64 A4301D06 03551D0E 04160414 34FC4F72 531DF400
+  6E123FFB 2532D76E C47B64A4 300D0609 2A864886 F70D0101 04050003 81810020
+  6900F67E E6EE51F3 DDC0155E C4459F82 BC2F1F28 B555C130 9A435FE4 1BD862CD
+  F8689972 095E5B4A 9D37EFF3 1BB24B55 8CEB3097 59711162 1AB443B3 6D12A615
+  847F68CE 541C4CE2 1A6EA74D 9DDD09B8 7E74CD23 77A67C28 3CCC4313 82759C1F
+  ED153498 C060C0E0 EF8D38F1 A8FBEEC4 950AB429 175D19A1 D24F2BAD 17
+  87EF
+  quit
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+!
+!
+interface Port-channel1
+ description Connected to HKHGC02DSW0001
+ switchport trunk allowed vlan 128-499
+ switchport mode trunk
+!
+interface GigabitEthernet0/1
+ description ununhexium en2
+ switchport access vlan 156
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/2
+ description ununseptium en2
+ switchport access vlan 156
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/3
+ description hkhgc02scm0001
+ switchport access vlan 150
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/4
+ description hkhgc02ibapp01
+ switchport access vlan 150
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/5
+ description hkhgc02ibext01
+ switchport access vlan 150
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/6
+ description hkhgc02tcm0001
+ switchport access vlan 150
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/7
+ description promethium
+ switchport access vlan 155
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/8
+ description hkhgc02ebapp01
+ switchport access vlan 161
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/9
+ description hkhgc02ibcom01
+ switchport access vlan 162
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/10
+ description hkhgc02ibdbs01
+ switchport access vlan 162
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/11
+ description hkhgc02ibtrn01
+ switchport access vlan 140
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/12
+ description hkhgc02alydb01
+ switchport access vlan 202
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/13
+ description hkhgc02rptsr01
+ switchport access vlan 202
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/14
+ description hkhgc02rptdb01
+ switchport access vlan 202
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/15
+ description hkhgc02ibhv01
+ switchport access vlan 162
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/16
+ description hkhgc02ibuddb1 eth3
+ switchport access vlan 162
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/17
+ description hkhgc02tcm0002
+ switchport access vlan 207
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/18
+ description hkhgc02tcm0003
+ switchport access vlan 207
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/19
+ switchport access vlan 207
+ switchport mode access
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet0/20
+ description hkhgc02scm0002
+ switchport access vlan 208
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/21
+ description hkhgc02scm0003
+ switchport access vlan 208
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/22
+ switchport access vlan 208
+ switchport mode access
+ shutdown
+ spanning-tree portfast
+!
+interface GigabitEthernet0/23
+ description hkhgc02mypbo01
+ switchport access vlan 209
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/24
+ description hkhgc02mypdi01
+ switchport access vlan 209
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/25
+ description einsteinium ilom - was hkhgc02mypdb01
+ switchport access vlan 190
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/26
+ description Hyper-V (Mgmt) WTCSG RETEK  hkhgc02sgmsi01
+ switchport access vlan 190
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/27
+ description WTCSG RETEK hkhgc02sgboe01
+ switchport access vlan 208
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/28
+ description WTCSG RETEK hkhgc02sgbdb01
+ switchport access vlan 208
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/29
+ description hkhgc02devcrm01 ilo
+ switchport access vlan 190
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/30
+ description hkhgc02wmycrm02 ilo
+ switchport access vlan 190
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/31
+ description WTCSG RETEK hkhgc02sgboe01
+ switchport access vlan 190
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/32
+ description WTCSG RETEK hkhgc02sgbdb01
+ switchport access vlan 190
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/33
+ description iLO
+ switchport access vlan 190
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/34
+ description iLO
+ switchport access vlan 190
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/35
+ description iLO
+ switchport access vlan 190
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/36
+ description iLO
+ switchport access vlan 190
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/37
+ description iLO
+ switchport access vlan 190
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/38
+ description iLO
+ switchport access vlan 190
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/39
+ description iLO
+ switchport access vlan 190
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/40
+ description iLO
+ switchport access vlan 190
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/41
+ description iLO
+ switchport access vlan 190
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/42
+ description iLO
+ switchport access vlan 190
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/43
+ description iLO
+ switchport access vlan 190
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/44
+ description iLO
+ switchport access vlan 190
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/45
+ description WTC Malaysia BO DB
+ switchport access vlan 209
+!
+interface GigabitEthernet0/46
+ shutdown
+!
+interface GigabitEthernet0/47
+ description Connected to HKHGC02DSW0001 Gi2/0/10
+ switchport trunk allowed vlan 128-499
+ switchport mode trunk
+ channel-group 1 mode on
+!
+interface GigabitEthernet0/48
+ description Connected to HKHGC02DSW0001 Gi3/0/10
+ switchport trunk allowed vlan 128-499
+ switchport mode trunk
+ channel-group 1 mode on
+!
+interface Vlan1
+ no ip address
+ no ip route-cache
+ shutdown
+!
+interface Vlan130
+ ip address 10.32.130.28 255.255.255.0
+ no ip route-cache
+!
+ip default-gateway 10.32.130.10
+no ip http server
+ip http secure-server
+logging 10.32.32.20
+logging 10.32.32.38
+logging 10.48.3.8
+access-list 79 permit 10.32.32.40
+access-list 79 permit 10.48.3.8
+access-list 79 permit 10.48.3.4
+access-list 79 permit 10.48.3.108
+access-list 79 permit 10.32.83.20
+access-list 79 permit 10.68.253.103
+access-list 79 permit 10.68.253.102
+access-list 79 permit 10.68.253.101
+access-list 79 deny   any log
+snmp-server community aswg1sd RO
+snmp-server community asw01mac RO 79
+tacacs-server host 10.32.32.41
+tacacs-server host 10.32.83.23
+tacacs-server host 10.33.2.87
+tacacs-server directed-request
+tacacs-server key 7 020B05495B570E325B
+!
+control-plane
+!
+banner exec ^CC WARNING: Unauthorized access to this network is prohibited.
+^C
+banner login ^CC WARNING: Unauthorized access to this network is prohibited.
+^C
+banner motd ^CC WARNING: Unauthorized access to this network is prohibited.
+^C
+!
+line con 0
+line vty 0 4
+ password 7 04585B56032559430400
+ transport input none
+line vty 5 15
+ password 7 08221C1E051D101A1F12
+!
+ntp clock-period 36028805
+ntp server 10.32.128.1
+ntp server 10.32.130.10
+end
+
+HKHGC02DSW0008#

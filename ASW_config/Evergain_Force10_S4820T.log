@@ -1,0 +1,660 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2019.07.18 16:24:13 =~=~=~=~=~=~=~=~=~=~=~=
+sh running-config 
+Current Configuration ...
+! Version 9.3(0.0)
+! Last configuration change at Wed Dec 13 14:45:43 2017 by kudos
+! Startup-config last updated at Wed Dec 13 14:45:57 2017 by kudos
+!
+boot system stack-unit 0 primary system: A:
+boot system stack-unit 0 secondary system: B:
+boot system stack-unit 0 default system: A:
+boot system stack-unit 1 primary system: A:
+boot system stack-unit 1 secondary system: B:
+boot system stack-unit 1 default system: A:
+!
+redundancy auto-synchronize full
+!
+hardware watchdog
+!
+logging buffered 300000 debugging
+logging console critical
+no logging monitor
+service timestamps log datetime localtime msec show-timezone
+service timestamps debug datetime localtime show-timezone
+!
+hostname Evergain_Force10_S4820T
+!
+aaa authentication login default tacacs+ local
+aaa authorization exec default tacacs+ local
+aaa authorization commands 15 default tacacs+ local
+aaa accounting commands 15 default stop-only tacacs+
+!
+username gitadmin password 7 2cbbd16e99ddd8fe privilege 15 
+username asw password 7 6ae805bc65fc8d32 privilege 15 
+username kudos password 7 3e9c7651975dd57dc7af2d9de9d83f25 privilege 15 
+!
+protocol spanning-tree pvst 
+ no disable 
+ vlan 128,130,241-242 bridge-priority 57344  
+!
+stack-unit 0 provision S4820T
+!
+stack-unit 0 port 52 portmode quad
+!
+stack-unit 0 stack-group 14
+!
+stack-unit 0 stack-group 15
+!
+interface TenGigabitEthernet 0/0
+ description hkhgc02sdevdb02 eth1 10.32.241.132
+ no ip address
+ switchport
+ no shutdown
+!
+interface TenGigabitEthernet 0/1
+ description hkhgc02sdevdb04 eth1 10.32.241.134
+ no ip address
+ switchport
+ no shutdown
+!
+interface TenGigabitEthernet 0/2
+ description hkhgc02sdevdb06 eth1 10.32.241.136
+ no ip address
+ switchport
+ no shutdown
+!
+interface TenGigabitEthernet 0/3
+ description hk02gfnhyp02 nic3
+ no ip address
+ no shutdown
+!
+interface TenGigabitEthernet 0/4
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/5
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/6
+ description EMC DC4200 port 0
+ no ip address
+ switchport
+ no shutdown
+!
+interface TenGigabitEthernet 0/7
+ description EMC DC4200 port 1
+ no ip address
+ switchport
+ no shutdown
+!
+interface TenGigabitEthernet 0/8
+ description Netbackup Carbon
+ no ip address
+ switchport
+ no shutdown
+!
+interface TenGigabitEthernet 0/9
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/10
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/11
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/12
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/13
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/14
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/15
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/16
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/17
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/18
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/19
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/20
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/21
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/22
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/23
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/24
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/25
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/26
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/27
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/28
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/29
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/30
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/31
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/32
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/33
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/34
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/35
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/36
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/37
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/38
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/39
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/40
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/41
+ no ip address
+ switchport
+ no shutdown
+!
+interface TenGigabitEthernet 0/42
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/43
+ no ip address
+ switchport
+ no shutdown
+!
+interface TenGigabitEthernet 0/44
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/45
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/46
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/47
+ no ip address
+ shutdown
+!
+interface fortyGigE 0/48
+ no ip address
+ no shutdown
+!
+interface TenGigabitEthernet 0/52
+ no ip address
+ flowcontrol rx on tx off  
+!  
+ port-channel-protocol LACP 
+  port-channel 42 mode active 
+ no shutdown
+!
+interface TenGigabitEthernet 0/53
+ no ip address
+ flowcontrol rx on tx off  
+!  
+ port-channel-protocol LACP 
+  port-channel 42 mode active 
+ no shutdown
+!
+interface TenGigabitEthernet 0/54
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 0/55
+ no ip address
+ shutdown
+!
+stack-unit 1 provision S4820T
+!
+stack-unit 1 port 52 portmode quad
+!
+stack-unit 1 stack-group 14
+!
+stack-unit 1 stack-group 15
+!
+interface TenGigabitEthernet 1/0
+ description hkhgc02sdevdb01 eth1 10.32.241.131
+ no ip address
+ switchport
+ no shutdown
+!
+interface TenGigabitEthernet 1/1
+ description hkhgc02sdevdb03 eth1 10.32.241.133
+ no ip address
+ switchport
+ no shutdown
+!
+interface TenGigabitEthernet 1/2
+ description hkhgc02sdevdb05 eth1 10.32.241.135
+ no ip address
+ switchport
+ no shutdown
+!
+interface TenGigabitEthernet 1/3
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/4
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/5
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/6
+ description EMC DC4200 port 2
+ no ip address
+ switchport
+ no shutdown
+!
+interface TenGigabitEthernet 1/7
+ description EMC DC4200 port 3
+ no ip address
+ switchport
+ no shutdown
+!
+interface TenGigabitEthernet 1/8
+ description Netbackup Carbon
+ no ip address
+ switchport
+ no shutdown
+!
+interface TenGigabitEthernet 1/9
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/10
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/11
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/12
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/13
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/14
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/15
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/16
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/17
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/18
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/19
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/20
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/21
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/22
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/23
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/24
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/25
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/26
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/27
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/28
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/29
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/30
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/31
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/32
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/33
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/34
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/35
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/36
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/37
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/38
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/39
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/40
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/41
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/42
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/43
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/44
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/45
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/46
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/47
+ no ip address
+ shutdown
+!
+interface fortyGigE 1/48
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/52
+ no ip address
+ flowcontrol rx on tx off  
+!  
+ port-channel-protocol LACP 
+  port-channel 42 mode active 
+ no shutdown
+!
+interface TenGigabitEthernet 1/53
+ no ip address
+ flowcontrol rx on tx off  
+!  
+ port-channel-protocol LACP 
+  port-channel 42 mode active 
+ no shutdown
+!
+interface TenGigabitEthernet 1/54
+ no ip address
+ shutdown
+!
+interface TenGigabitEthernet 1/55
+ no ip address
+ shutdown
+!
+interface ManagementEthernet 0/0
+ ip address 192.168.10.3/24
+ no shutdown
+!
+interface ManagementEthernet 1/0
+ ip address 192.168.10.4/24
+ no shutdown
+!
+interface ManagementEthernet 2/0
+ no shutdown
+!
+interface ManagementEthernet 3/0
+ no shutdown
+!
+interface ManagementEthernet 4/0
+ no shutdown
+!
+interface ManagementEthernet 5/0
+ no shutdown
+!
+interface ManagementEthernet 6/0
+ no shutdown
+!
+interface ManagementEthernet 7/0
+ no shutdown
+!
+interface ManagementEthernet 8/0
+ no shutdown
+!
+interface ManagementEthernet 9/0
+ no shutdown
+!
+interface ManagementEthernet 10/0
+ no shutdown
+!
+interface ManagementEthernet 11/0
+ no shutdown
+!
+interface Port-channel 42
+ description "Connect to S4810 Port 0/45-46,1/45-46"
+ no ip address
+ switchport
+ no shutdown
+!
+interface Vlan 1
+!untagged TenGigabitEthernet 0/41,43
+!
+interface Vlan 128
+ description "Tacas+ Auth"
+ no ip address
+ tagged Port-channel 42
+ no shutdown
+!
+interface Vlan 130
+ ip address 10.32.130.40/24
+ tagged Port-channel 42
+ no shutdown
+!
+interface Vlan 198
+ no ip address
+ tagged Port-channel 42
+ untagged TenGigabitEthernet 0/6-8
+ untagged TenGigabitEthernet 1/6-8
+ no shutdown
+!
+interface Vlan 241
+ ip address 10.32.241.2/24
+ tagged Port-channel 42
+ untagged TenGigabitEthernet 0/0-2
+ untagged TenGigabitEthernet 1/0-2
+ no shutdown
+!
+interface Vlan 242
+ ip address 10.32.242.2/24
+ tagged Port-channel 42
+ no shutdown
+!
+ip route 0.0.0.0/0 10.32.130.10 
+!
+logging facility local6
+logging 10.32.32.20
+!
+banner exec ^C
+ WARNING: Unauthorized access to this network is prohibited 
+^C
+banner login ^C
+ WARNING: Unauthorized access to this network is prohibited 
+^C
+banner motd ^C
+ WARNING: Unauthorized access to this network is prohibited 
+^C
+!
+snmp-server community asw01mac ro 79
+snmp-server community aswg1sd ro 
+snmp-server community cnsnms_ro ro 
+snmp-server host 10.48.3.3 traps version 1 smartnet udp-port 162
+!
+stack-unit 0 priority 14
+stack-unit 1 priority 13
+no ip telnet server enable
+!
+ntp server 10.32.15.1
+ntp server 10.32.128.1
+ntp server 10.63.44.5
+ntp source Vlan 128
+tacacs-server key 7 ec1365927322d5b2 
+ip tacacs source-interface Vlan 128 
+tacacs-server host 10.32.32.41
+tacacs-server host 10.32.83.23
+tacacs-server host 10.32.2.87
+!
+clock timezone HKT 8 0 
+!
+ip ssh server enable
+!
+protocol lldp 
+!
+line console 0
+line vty 0
+ privilege level 15
+line vty 1
+ privilege level 15
+line vty 2
+ privilege level 15
+line vty 3
+ privilege level 15
+line vty 4
+ privilege level 15
+line vty 5
+line vty 6
+line vty 7
+line vty 8
+line vty 9
+!
+reload-type normal-reload
+!
+end
+Evergain_Force10_S4820T#exit
